@@ -1,0 +1,16 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;800&family=Poppins:wght@100;200;300;400;500;600&family=Ubuntu+Mono:wght@400;700&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
+html, body, #root, .App {
+  min-height: 100%;
+  background-color: #151515;
+
+   font-family: 'Poppins', sans-serif;
+
+
+}
