@@ -29,8 +29,6 @@ function changeValue(index){
     }
 
    
-      console.log( document.getElementById(`${index}`).childNodes[0])
-
       setCount(count+1);
   }
  
@@ -50,53 +48,50 @@ function changeValue(index){
 useEffect(() => {
     // First row check
     if ((list[0] === list[1] && list[1] === list[2] && list[0] === 1) || (list[0] === list[1] && list[1] === list[2] && list[0] === 2)) {
-      console.log(1, 'hiee');
       if(list[0] === 2) setPlayer("❌");
       else setPlayer("⭕");
       setIswin(true);
     } else if ((list[0] === list[3] && list[3] === list[6] && list[0] === 1) || (list[0] === list[3] && list[3] === list[6] && list[0] === 2)) {
-      console.log(2, 'hiee');
+
       if(list[3] === 2) setPlayer("❌");
       else setPlayer("⭕");
       setIswin(true);
     } else if ((list[6] === list[7] && list[7] === list[8] && list[6] === 1) || (list[6] === list[7] && list[7] === list[8] && list[6] === 2)) {
-      console.log(3, 'hiee');
+
       if(list[6] === 2) setPlayer("❌");
       else setPlayer("⭕");
       setIswin(true);
     } else if ((list[2] === list[5] && list[5] === list[8] && list[2] === 1) || (list[2] === list[5] && list[5] === list[8] && list[2] === 2)) {
-      console.log(4, 'hiee');
+    
       if(list[2] === 2) setPlayer("❌");
       else setPlayer("⭕");
       setIswin(true);
     } else if ((list[0] === list[4] && list[4] === list[8] && list[0] === 1) || (list[0] === list[4] && list[4] === list[8] && list[0] === 2)) {
-      console.log(5, 'hiee');
+ 
       if(list[0] === 2) setPlayer("❌");
       else setPlayer("⭕");
       setIswin(true);
     } else if ((list[2] === list[4] && list[4] === list[6] && list[2] === 1) || (list[2] === list[4] && list[4] === list[6] && list[2] === 2)) {
-      console.log(6, 'hiee');
+
       if(list[2] === 2) setPlayer("❌");
       else setPlayer("⭕");
       setIswin(true);
     } else if ((list[3] === list[4] && list[4] === list[5] && list[3] === 1) || (list[3] === list[4] && list[4] === list[5] && list[3] === 2)) {
-        console.log(6, 'hiee');
+ 
         if(list[3] === 2) setPlayer("❌");
         else setPlayer("⭕");
         setIswin(true);
     } else if ((list[1] === list[4] && list[4] === list[7] && list[1] === 1) || (list[1] === list[4] && list[4] === list[7] && list[1] === 2)) {
-        console.log(6, 'hiee');
+
         if(list[1] === 2) setPlayer("❌");
         else setPlayer("⭕");
         setIswin(true);
     }
 }, [list]);
 
-{console.log(isWin,'kkkkk')}
   return (
     <div  className='Conatiner'>
 
-{console.log(count,'count hai')}
      {count===9 ?  <h3 className='Title'>Draw!!</h3>: <h3 className='Title'>Tic Tac Toe</h3> }
 
       <div className='game-box'>
@@ -120,7 +115,6 @@ useEffect(() => {
             img.childNodes[0].src = "";
         })
         setCount(0)
-        console.log(imagesBox,'ppppppppppp')
         }}>Reset</div>
 
 
