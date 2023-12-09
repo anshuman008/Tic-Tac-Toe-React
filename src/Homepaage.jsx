@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import circli_icon from "./assets/circle.png"
 import cross_icon from "./assets/cross.png"
 const Homepage = () => {
@@ -9,26 +9,38 @@ const [isWin,setIswin] = useState(false);
 const [toggle,setToggle] = useState(0);
 const [player,setPlayer] = useState("");
 
-function changeValue(index){
+let box1 = useRef(null);
+let box2 = useRef(null);
+let box3 = useRef(null);
+let box4 = useRef(null);
+let box5 = useRef(null);
+let box6 = useRef(null);
+let box7 = useRef(null);
+let box8 = useRef(null);
+let box9 = useRef(null);
+
+let box_array  = [box1,box2,box3,box4,box5,box6,box7,box8,box9];
+
+
+function changeValue(target){
 
     let newArr = [...list];
-    const ind = Number(index)-1;
+    const ind = Number(target.id)-1;
     
   if(newArr[ind] === 0){
     if(toggle === 0){
         newArr[ind] = 1;
         setList(newArr)
         setToggle(1);
-        document.getElementById(`${index}`).childNodes[0].src = `${circli_icon}`
+       target.childNodes[0].src = `${circli_icon}`
     }
     else{
         newArr[ind] = 2;
         setList(newArr)
         setToggle(0)
-        document.getElementById(`${index}`).childNodes[0].src = `${cross_icon}`
+       target.childNodes[0].src = `${cross_icon}`
     }
 
-   
       setCount(count+1);
   }
  
@@ -95,25 +107,24 @@ useEffect(() => {
      {count===9 ?  <h3 className='Title'>Draw!!</h3>: <h3 className='Title'>Tic Tac Toe</h3> }
 
       <div className='game-box'>
-         <div className="box"  id='1'onClick={(e)=>{changeValue(e.target.id)}}><img  alt="" /></div>
-         <div className="box"  id='2'onClick={(e)=>{changeValue(e.target.id)}}><img alt="" /></div>
-         <div className="box"  id='3'onClick={(e)=>{changeValue(e.target.id)}}><img  alt="" /></div>
-         <div className="box"  id='4'onClick={(e)=>{changeValue(e.target.id)}}><img alt="" /></div>
-         <div className="box" id='5'onClick={(e)=>{changeValue(e.target.id)}}><img  alt="" /></div>
-         <div className="box"  id='6'onClick={(e)=>{changeValue(e.target.id)}}><img alt="" /></div>
-         <div className="box"  id='7'onClick={(e)=>{changeValue(e.target.id)}}><img alt="" /></div>
-         <div className="box"  id='8'onClick={(e)=>{changeValue(e.target.id)}}><img  alt="" /></div>
-         <div className="box" id='9'onClick={(e)=>{changeValue(e.target.id)}}><img  alt="" /></div>
+         <div className="box" ref={box1} id='1'onClick={(e)=>{changeValue(e.target)}}>< img  alt="" /></div>
+         <div className="box" ref={box2} id='2'onClick={(e)=>{changeValue(e.target)}}><img alt="" /></div>
+         <div className="box" ref={box3} id='3'onClick={(e)=>{changeValue(e.target)}}><img  alt="" /></div>
+         <div className="box" ref={box4} id='4'onClick={(e)=>{changeValue(e.target)}}><img alt="" /></div>
+         <div className="box" ref={box5} id='5'onClick={(e)=>{changeValue(e.target)}}><img  alt="" /></div>
+         <div className="box" ref={box6} id='6'onClick={(e)=>{changeValue(e.target)}}><img alt="" /></div>
+         <div className="box" ref={box7} id='7'onClick={(e)=>{changeValue(e.target)}}><img alt="" /></div>
+         <div className="box" ref={box8} id='8'onClick={(e)=>{changeValue(e.target)}}><img  alt="" /></div>
+         <div className="box" ref={box9} id='9'onClick={(e)=>{changeValue(e.target)}}><img  alt="" /></div>
       </div>
   <div className="reset-button" onClick={()=>{
     const newArr = [0,0,0,0,0,0,0,0,0];
         setList(newArr)
-        let allBox = document.getElementsByClassName("game-box");
-        let imagesBox = allBox[0].childNodes
-
-        imagesBox.forEach((img) =>{
-            img.childNodes[0].src = "";
+    
+        box_array.map((baap)=>{
+         baap.current.childNodes[0].src = "";
         })
+
         setCount(0)
         }}>Reset</div>
 
@@ -129,12 +140,11 @@ useEffect(() => {
       <div className="reset-button" onClick={()=>{
         const newArr = [0,0,0,0,0,0,0,0,0];
         setList(newArr)
-        let allBox = document.getElementsByClassName("game-box");
-        let imagesBox = allBox[0].childNodes
-
-        imagesBox.forEach((img) =>{
-            img.childNodes[0].src = "";
-        })
+          
+        box_array.map((baap)=>{
+          baap.current.childNodes[0].src = "";
+         })
+         
         setCount(0)
         setIswin(false)
         }}>Reset</div>
